@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes changeColor {
+  0% {
+    stroke: yellow;
+  }
+
+  25% {
+    stroke: yellow;
+  }
+
+  50% {
+    stroke: yellow;
+  }
+
+  75% {
+    stroke: yellow;
+  }
+
+  100% {
+    stroke: yellow;
+  }
+}
+
+@keyframes changeColorWhite {
+  0% {
+    stroke: white;
+  }
+
+  25% {
+    stroke: white;
+  }
+
+  50% {
+    stroke: white;
+  }
+
+  75% {
+    stroke: white;
+  }
+
+  100% {
+    stroke: white;
+  }
+}
+
+.loader_custom {
+  animation: rotate 2s linear infinite, changeColor 5s linear infinite;
+}
+
+.loader_custom_white {
+  animation: rotate 2s linear infinite, changeColorWhite 5s linear infinite;
+}
+
+.sss{
+  background: #0080ff;
+}
