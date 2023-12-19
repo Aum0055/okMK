@@ -306,8 +306,11 @@ export default function NgDialog() {
                 fullScreen
                 open={open}
             >
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <Container maxWidth='sm' className='space-y-4 mt-4'>
+                <div className=' h-screen overflow-y-auto py-12'>
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <Container maxWidth='sm' className='space-y-4'>
+                        <p className='text-xl'>Case NG Item</p>
+                        <div className='border border-gray-300'/>
                         <div>
                             <p className={`mb-1 ${errors.case && 'text-red-500'}`}>Case ng {errors.case?.message} </p>
                             <Select
@@ -441,7 +444,9 @@ export default function NgDialog() {
                             </div>
                         </div>
                     </Container>
-                </form>
+                </form>  
+                </div>
+                
             </Dialog>
         </React.Fragment>
     );
