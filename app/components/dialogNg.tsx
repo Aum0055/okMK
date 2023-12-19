@@ -23,7 +23,7 @@ type Inputs = {
 }
 
 export default function NgDialog() {
-    const { register, handleSubmit, clearErrors, setError, setValue, formState: { errors }, } = useForm<Inputs>();
+    const { register, handleSubmit, clearErrors, reset ,setError, setValue, formState: { errors }, } = useForm<Inputs>();
     const [open, setOpen] = React.useState(false);
     const [qtyWO, setQtyWO] = React.useState<number>(100);
     const [qtyNg, setQtyNg] = React.useState<number>(0);
@@ -278,6 +278,11 @@ export default function NgDialog() {
 
     const handleClose = () => {
         setOpen(false);
+        clearErrors();
+        reset();
+        seCaseNg('Placeholder');
+        setPast('Placeholder');
+        setQtyNg(0);
     };
 
 
@@ -300,23 +305,7 @@ export default function NgDialog() {
             <Dialog
                 fullScreen
                 open={open}
-                onClose={handleClose}
             >
-                <AppBar sx={{ position: 'relative' }}>
-                    <Toolbar>
-                        <IconButton
-                            edge="start"
-                            color="inherit"
-                            onClick={handleClose}
-                            aria-label="close"
-                        >
-                            <CloseIcon />
-                        </IconButton>
-                        <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                            Ng order
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Container maxWidth='sm' className='space-y-4 mt-4'>
                         <div>
@@ -427,9 +416,19 @@ export default function NgDialog() {
                             </div>
                         </div>
                         <div className='flex justify-end'>
-                            <div className=' mt-10'>
+                            <div className='mt-10 space-x-4'>
+                                  <button
+                                    className={`h-12 px-6 rounded-md border border-red-500 hover:border-red-700 text-red-500 hover:text-red-700 transition-colors duration-300 ease-in-out`}
+                                    type='button'
+                                    disabled={saveCheck}
+                                    onClick={() => handleClose()}
+                                >
+                                    <div className='flex justify-center'>
+                                        Close
+                                    </div>
+                                </button>
                                 <button
-                                    className={`h-12 px-6 rounded-md ${saveCheck ?'bg-green-700':'bg-green-500'} text-white dark:text-black hover:bg-green-700 transition-colors duration-300 ease-in-out`}
+                                    className={`h-12 px-6 rounded-md ${saveCheck ? 'bg-green-700' : 'bg-green-500'} text-white dark:text-black hover:bg-green-700 transition-colors duration-300 ease-in-out`}
                                     type='submit'
                                     disabled={saveCheck}
                                 >
@@ -437,8 +436,9 @@ export default function NgDialog() {
                                         {saveCheck ? <RenderCustomWhite /> : null}
                                         Save
                                     </div>
-                                </button></div>
-
+                                </button>
+                              
+                            </div>
                         </div>
                     </Container>
                 </form>
